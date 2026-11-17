@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشيخ قيس الخياري</title>
+    <!-- استيراد خط عربي أنيق -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.8;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 24px;
+            color: #1a365d;
+            margin-bottom: 5px;
+        }
+        header p {
+            color: #666;
+            font-size: 14px;
+        }
+        nav {
+            background-color: #1a365d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 15px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #cbd5e1;
+        }
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1000&q=80') center/cover;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            color: #e2e8f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #1a365d;
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 5px;
+            margin: 30px 0 20px 0;
+        }
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card h3 {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #4a5568;
+        }
+        .book-card {
+            border-right: 4px solid #1a365d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>الشيخ قيس الخياري</h1>
+        <p>منصة علمية</p>
+    </header>
+
+    <nav>
+        <a href="#">الرئيسية</a>
+        <a href="#">عن الشيخ</a>
+        <a href="#">المقالات</a>
+        <a href="#">الكتب والبحوث</a>
+        <a href="#">الفتاوى</a>
+    </nav>
+
+    <div class="hero">
+        <h2>مرحباً بكم في الموقع الرسمي للشيخ قيس الخياري</h2>
+        <p>موقع يضم بحوث، مقالات ومؤلفات لخدمة العلم الشرعي ونشر المعرفة.</p>
+    </div>
+
+    <div class="container">
+        <!-- قسم المقالات -->
+        <h3 class="section-title">أحدث المقالات والبحوث</h3>
+        
+        <div class="card">
+            <h3>عنوان المقال أو البحث الأول</h3>
+            <p>هنا يتم وضع ملخص قصير للمقال أو البحث الشرعي، مع عرض النص بأسلوب مريح للقارئ...</p>
+        </div>
+
+        <div class="card">
+            <h3>عنوان المقال أو البحث الثاني</h3>
+            <p>هنا يتم وضع ملخص قصير للمقال أو البحث الشرعي، مع عرض النص بأسلوب مريح للقارئ...</p>
+        </div>
+
+        <!-- قسم الكتب والبحوث -->
+        <h3 class="section-title">الكتب والبحوث</h3>
+        
+        <div class="card book-card">
+            <h3>اسم الكتاب الأول (أو العنوان العلمي)</h3>
+            <p>نبذة تعريفية مختصرة عن الكتاب، توضح مضمونه وموضوعه العلمي وأبرز المباحث التي يحتوي عليها.</p>
+        </div>
+
+        <div class="card book-card">
+            <h3>اسم الكتاب الثاني (أو العنوان العلمي)</h3>
+            <p>نبذة تعريفية مختصرة عن الكتاب، توضح مضمونه وموضوعه العلمي وأبرز المباحث التي يحتوي عليها.</p>
+        </div>
+    </div>
+
+</body>
+</html>
