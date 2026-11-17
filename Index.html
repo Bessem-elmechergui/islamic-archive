@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الشيخ قيس الخياري</title>
-    <!-- استيراد خط عربي أنيق -->
+    <title>الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</title>
+    <!-- استيراد خط عربي أنيق وأيقونات FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -25,13 +26,29 @@
             text-align: center;
         }
         header h1 {
-            font-size: 24px;
+            font-size: 22px;
             color: #1a365d;
             margin-bottom: 5px;
         }
         header p {
             color: #666;
             font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .social-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #1877f2;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .social-header-btn:hover {
+            background-color: #145dbf;
         }
         nav {
             background-color: #1a365d;
@@ -43,8 +60,8 @@
         nav a {
             color: #ffffff;
             text-decoration: none;
-            padding: 8px 15px;
-            font-size: 14px;
+            padding: 8px 12px;
+            font-size: 13px;
             transition: 0.3s;
         }
         nav a:hover {
@@ -54,25 +71,40 @@
             background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1000&q=80') center/cover;
             color: #ffffff;
             text-align: center;
-            padding: 60px 20px;
+            padding: 50px 20px;
         }
         .hero h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 0;
         }
-        .hero p {
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto 20px;
-            color: #e2e8f0;
+        .search-container {
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 25px;
+            outline: none;
+            transition: 0.3s;
+            background-color: #fff;
+        }
+        .search-box:focus {
+            border-color: #1a365d;
+            box-shadow: 0 0 8px rgba(26, 54, 93, 0.2);
         }
         .container {
             max-width: 800px;
-            margin: 30px auto;
+            margin: 20px auto 30px auto;
             padding: 0 20px;
         }
         .section-title {
-            font-size: 20px;
+            font-size: 19px;
             color: #1a365d;
             border-bottom: 2px solid #1a365d;
             padding-bottom: 5px;
@@ -84,51 +116,75 @@
             border-radius: 8px;
             margin-bottom: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
         .card h3 {
-            font-size: 18px;
+            font-size: 17px;
             color: #2d3748;
             margin-bottom: 10px;
         }
         .card p {
             font-size: 14px;
             color: #4a5568;
+            margin-bottom: 12px;
         }
         .book-card {
             border-right: 4px solid #1a365d;
+        }
+        .media-link {
+            display: inline-block;
+            background-color: #1a365d;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .media-link:hover {
+            background-color: #2c5282;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>الشيخ قيس الخياري</h1>
-        <p>منصة علمية</p>
+        <h1>الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</h1>
+        <p>منصة خاصة بالأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</p>
+        <!-- زر صفحة الفيسبوك -->
+        <a href="رابط_صفحة_الفيسبوك_هنا" target="_blank" class="social-header-btn">
+            <i class="fab fa-facebook"></i> صفحتنا على الفيسبوك
+        </a>
     </header>
 
     <nav>
         <a href="#">الرئيسية</a>
-        <a href="#">عن الشيخ</a>
+        <a href="#">عن الشيخين</a>
         <a href="#">المقالات</a>
         <a href="#">الكتب والبحوث</a>
+        <a href="#">المحاضرات والدروس</a>
         <a href="#">الفتاوى</a>
     </nav>
 
     <div class="hero">
-        <h2>مرحباً بكم في الموقع الرسمي للشيخ قيس الخياري</h2>
-        <p>موقع يضم بحوث، مقالات ومؤلفات لخدمة العلم الشرعي ونشر المعرفة.</p>
+        <h2>مرحباً بكم في الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</h2>
     </div>
 
-    <div class="container">
+    <!-- خانة البحث -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث في الموقع" onkeyup="searchWebsite()">
+    </div>
+
+    <div class="container" id="contentContainer">
         <!-- قسم المقالات -->
         <h3 class="section-title">أحدث المقالات والبحوث</h3>
         
-        <div class="card">
+        <div class="card searchable-item">
             <h3>عنوان المقال أو البحث الأول</h3>
             <p>هنا يتم وضع ملخص قصير للمقال أو البحث الشرعي، مع عرض النص بأسلوب مريح للقارئ...</p>
         </div>
 
-        <div class="card">
+        <div class="card searchable-item">
             <h3>عنوان المقال أو البحث الثاني</h3>
             <p>هنا يتم وضع ملخص قصير للمقال أو البحث الشرعي، مع عرض النص بأسلوب مريح للقارئ...</p>
         </div>
@@ -136,16 +192,48 @@
         <!-- قسم الكتب والبحوث -->
         <h3 class="section-title">الكتب والبحوث</h3>
         
-        <div class="card book-card">
+        <div class="card book-card searchable-item">
             <h3>اسم الكتاب الأول (أو العنوان العلمي)</h3>
             <p>نبذة تعريفية مختصرة عن الكتاب، توضح مضمونه وموضوعه العلمي وأبرز المباحث التي يحتوي عليها.</p>
         </div>
 
-        <div class="card book-card">
+        <div class="card book-card searchable-item">
             <h3>اسم الكتاب الثاني (أو العنوان العلمي)</h3>
             <p>نبذة تعريفية مختصرة عن الكتاب، توضح مضمونه وموضوعه العلمي وأبرز المباحث التي يحتوي عليها.</p>
         </div>
+
+        <!-- قسم المحاضرات والدروس -->
+        <h3 class="section-title">المحاضرات والدروس</h3>
+        
+        <div class="card searchable-item">
+            <h3>عنوان المحاضرة أو الدرس المرئي/الصوتي الأول</h3>
+            <p>وصف مختصر لمحتوى الدرس أو المحاضرة العلمية...</p>
+            <a href="رابط_المحاضرة_هنا" target="_blank" class="media-link">مشاهدة / الاستماع للدرس</a>
+        </div>
+
+        <div class="card searchable-item">
+            <h3>عنوان المحاضرة أو الدرس المرئي/الصوتي الثاني</h3>
+            <p>وصف مختصر لمحتوى الدرس أو المحاضرة العلمية...</p>
+            <a href="رابط_المحاضرة_هنا" target="_blank" class="media-link">مشاهدة / الاستماع للدرس</a>
+        </div>
     </div>
+
+    <!-- كود برمجي بسيط لتشغيل البحث -->
+    <script>
+        function searchWebsite() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('searchable-item');
+
+            for (let i = 0; i < cards.length; i++) {
+                let text = cards[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
