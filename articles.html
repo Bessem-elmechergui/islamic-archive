@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قسم المقالات - الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.8;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 22px;
+            color: #1a365d;
+            margin-bottom: 5px;
+        }
+        header p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .social-header-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #1877f2;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .social-header-btn:hover {
+            background-color: #145dbf;
+        }
+        nav {
+            background-color: #1a365d;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #cbd5e1;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 22px;
+            color: #1a365d;
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .article-card h3 {
+            font-size: 18px;
+            color: #1a365d;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .article-author {
+            font-size: 14px;
+            color: #4a5568;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .article-snippet {
+            font-size: 15px;
+            color: #2d3748;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .read-more-btn {
+            display: inline-block;
+            background-color: #1a365d;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .read-more-btn:hover {
+            background-color: #2c5282;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</h1>
+        <p>منصة خاصة بالأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</p>
+        <a href="https://m.facebook.com/profile.php?id=61588231537006" target="_blank" rel="noopener noreferrer" class="social-header-btn">
+            <i class="fab fa-facebook"></i> صفحتنا على الفيسبوك
+        </a>
+    </header>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عن الشيخين</a>
+        <a href="articles.html">المقالات</a>
+        <a href="index.html">الكتب والبحوث</a>
+        <a href="index.html">المحاضرات والدروس</a>
+        <a href="index.html">الفتاوى</a>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title">أرشيف المقالات والبحوث كاملة</h2>
+        <div id="allArticlesContainer">
+            <!-- ستعرض جميع المقالات هنا آلياً -->
+        </div>
+    </div>
+
+    <!-- استدعاء ملف البيانات -->
+    <script src="articles.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("allArticlesContainer");
+            if (typeof allArticles !== 'undefined' && allArticles.length > 0) {
+                let htmlContent = "";
+                allArticles.forEach(article => {
+                    htmlContent += `
+                        <div class="card article-card">
+                            <h3>${article.title}</h3>
+                            <div class="article-author">${article.author}</div>
+                            <div class="article-snippet">${article.snippet}</div>
+                            <a href="read.html?id=${article.id}" class="read-more-btn">قراءة المقال كاملاً</a>
+                        </div>
+                    `;
+                });
+                container.innerHTML = htmlContent;
+            } else {
+                container.innerHTML = "<p>لا توجد مقالات منشورة حالياً.</p>";
+            }
+        });
+    </script>
+
+</body>
+      </html>
+  
