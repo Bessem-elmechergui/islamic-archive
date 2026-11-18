@@ -18,10 +18,9 @@
         nav a { color: #ffffff; text-decoration: none; padding: 8px 15px; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #cbd5e1; }
         
-        /* تنسيق قسم الـ Hero مع الصورة الدائرية */
-        .hero { background: linear-gradient(rgba(26,54,93,0.85), rgba(26,54,93,0.85)), #1a365d; color: #fff; text-align: center; padding: 40px 20px; }
-        .hero-image-container { margin-bottom: 15px; display: flex; justify-content: center; }
-        .hero-image-container img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background-color: #fff; }
+        /* تنسيق قسم الـ Hero بدون صورة */
+        .hero { background: linear-gradient(rgba(26,54,93,0.9), rgba(26,54,93,0.9)), #1a365d; color: #fff; text-align: center; padding: 50px 20px; }
+        .hero h2 { font-size: 26px; margin-bottom: 10px; color: #fff; }
         .hero p { font-size: 16px; opacity: 0.95; max-width: 700px; margin: 0 auto; }
 
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -59,10 +58,7 @@
     </nav>
 
     <div class="hero">
-        <div class="hero-image-container">
-            <!-- استخدام الاسم الدقيق بالحرف الصغير -->
-            <img src="file_00000000d22c722f8eb181a795a7cf89.png" alt="الشيخان كمال المرزوقي وقيس الخياري">
-        </div>
+        <h2>الأرشيف العلمي للشيخين</h2>
         <p>مرجع شامل يضم مقالات، كتب، محاضرات، وفتاوى الشيخين كمال المرزوقي وقيس الخياري</p>
     </div>
 
@@ -151,52 +147,4 @@
                 let html = "";
                 allLectures.slice(0, 3).forEach(item => {
                     let mediaHtml = "";
-                    let targetUrl = item.mediaUrl || item.youtubeUrl || item.url || "";
-                    
-                    if (targetUrl) {
-                        let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-                        let match = targetUrl.match(regExp);
-                        let ytId = (match && match[2].length === 11) ? match[2] : '';
-                        if (ytId) {
-                            mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
-                        }
-                    }
-
-                    html += `
-                        <div class="card">
-                            <div>
-                                ${mediaHtml}
-                                <h3>${item.title}</h3>
-                                <div class="card-author">${item.author}</div>
-                                <div class="card-snippet">${item.snippet}</div>
-                            </div>
-                            <a href="lectures.html" class="action-btn">مشاهدة الدرس</a>
-                        </div>
-                    `;
-                });
-                lecturesContainer.innerHTML = html;
-            }
-
-            // 4. الفتاوى
-            const fatwasContainer = document.getElementById("latestFatwasContainer");
-            if (typeof allFatwas !== 'undefined' && allFatwas.length > 0) {
-                let html = "";
-                allFatwas.slice(0, 3).forEach(item => {
-                    html += `
-                        <div class="card">
-                            <div>
-                                <h3>${item.title}</h3>
-                                <div class="card-author">${item.author}</div>
-                                <div class="card-snippet">${item.snippet}</div>
-                            </div>
-                            <a href="fatwas.html" class="action-btn" style="background-color: #b7791f;">قراءة الفتوى كاملة</a>
-                        </div>
-                    `;
-                });
-                fatwasContainer.innerHTML = html;
-            }
-
-        });
-    </script>
-</body>
-</html>
+                    let targetUrl = item.media
