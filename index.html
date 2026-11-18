@@ -31,6 +31,10 @@
         .card-snippet { font-size: 14px; color: #4a5568; margin-bottom: 15px; }
         .action-btn { display: inline-block; background-color: #1a365d; color: #fff; padding: 6px 14px; border-radius: 4px; text-decoration: none; font-size: 13px; text-align: center; transition: 0.3s; align-self: flex-start; }
         .action-btn:hover { background-color: #2c5282; }
+        .media-container { width: 100%; margin-bottom: 15px; border-radius: 6px; overflow: hidden; background: #000; }
+        .media-container iframe, .media-container video, .media-container audio { width: 100%; display: block; border: none; }
+        .media-container iframe { height: 180px; }
+        .media-container audio { padding: 10px; width: 100%; }
     </style>
 </head>
 <body>
@@ -136,14 +140,29 @@
                 booksContainer.innerHTML = html;
             }
 
-            // 3. المحاضرات
+            // 3. المحاضرات (مع دعم ظهور الفيديوهات بشكل آلي)
             const lecturesContainer = document.getElementById("latestLecturesContainer");
             if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
                 let html = "";
                 allLectures.slice(0, 3).forEach(item => {
+                    let mediaHtml = "";
+                    if (item.youtubeId) {
+                        mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${item.youtubeId}" allowfullscreen></iframe></div>`;
+                    } else if (item.youtubeUrl) {
+                        let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                        let match = item.youtubeUrl.match(regExp);
+                        let ytId = (match && match[2].length === 11) ? match[2] : '';
+                        if (ytId) {
+                            mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
+                        }
+                    } else if (item.audioUrl) {
+                        mediaHtml = `<div class="media-container"><audio controls src="${item.audioUrl}"></audio></div>`;
+                    }
+
                     html += `
                         <div class="card">
                             <div>
+                                ${mediaHtml}
                                 <h3>${item.title}</h3>
                                 <div class="card-author">${item.author}</div>
                                 <div class="card-snippet">${item.snippet}</div>
@@ -177,4 +196,5 @@
         });
     </script>
 </body>
-</html>
+    </html>
+            
