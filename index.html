@@ -17,9 +17,13 @@
         nav { background-color: #1a365d; display: flex; justify-content: center; flex-wrap: wrap; padding: 10px; }
         nav a { color: #ffffff; text-decoration: none; padding: 8px 15px; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #cbd5e1; }
-        .hero { background: linear-gradient(rgba(26,54,93,0.85), rgba(26,54,93,0.85)), url('images/hero-bg.jpg') center/cover; color: #fff; text-align: center; padding: 50px 20px; }
-        .hero h2 { font-size: 28px; margin-bottom: 10px; }
-        .hero p { font-size: 16px; opacity: 0.9; }
+        
+        /* تنسيق قسم الـ Hero مع الصورة الدائرية */
+        .hero { background: linear-gradient(rgba(26,54,93,0.85), rgba(26,54,93,0.85)), #1a365d; color: #fff; text-align: center; padding: 40px 20px; }
+        .hero-image-container { margin-bottom: 15px; display: flex; justify-content: center; }
+        .hero-image-container img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background-color: #fff; }
+        .hero p { font-size: 16px; opacity: 0.95; max-width: 700px; margin: 0 auto; }
+
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
         .section-title { font-size: 20px; color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         .section-title a { font-size: 14px; color: #b7791f; text-decoration: none; }
@@ -55,7 +59,9 @@
     </nav>
 
     <div class="hero">
-        <h2>مرحباً بكم في الأرشيف العلمي</h2>
+        <div class="hero-image-container">
+            <img src="File_00000000d22c722f8eb181a795a7cf89.png" alt="الشيخان كمال المرزوقي وقيس الخياري">
+        </div>
         <p>مرجع شامل يضم مقالات، كتب، محاضرات، وفتاوى الشيخين كمال المرزوقي وقيس الخياري</p>
     </div>
 
@@ -138,7 +144,7 @@
                 booksContainer.innerHTML = html;
             }
 
-            // 3. المحاضرات (مع دعم mediaUrl)
+            // 3. المحاضرات
             const lecturesContainer = document.getElementById("latestLecturesContainer");
             if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
                 let html = "";
@@ -192,5 +198,4 @@
         });
     </script>
 </body>
-                </html>
-            
+</html>
