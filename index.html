@@ -103,12 +103,29 @@
             margin: 20px auto 30px auto;
             padding: 0 20px;
         }
-        .section-title {
-            font-size: 19px;
-            color: #1a365d;
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 2px solid #1a365d;
             padding-bottom: 5px;
             margin: 30px 0 20px 0;
+        }
+        .section-title {
+            font-size: 19px;
+            color: #1a365d;
+            margin: 0;
+        }
+        .more-link {
+            font-size: 13px;
+            color: #1a365d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .more-link:hover {
+            color: #2c5282;
+            text-decoration: underline;
         }
         .card {
             background: #ffffff;
@@ -118,13 +135,13 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             transition: 0.3s;
         }
-        .article-card h3 {
+        .card h3 {
             font-size: 18px;
             color: #1a365d;
             margin-bottom: 8px;
             line-height: 1.5;
         }
-        .article-author {
+        .card-author {
             font-size: 14px;
             color: #4a5568;
             font-weight: bold;
@@ -132,13 +149,13 @@
             padding-bottom: 8px;
             border-bottom: 1px dashed #e2e8f0;
         }
-        .article-snippet {
+        .card-snippet {
             font-size: 15px;
             color: #2d3748;
             margin-bottom: 15px;
             text-align: justify;
         }
-        .read-more-btn {
+        .action-btn {
             display: inline-block;
             background-color: #1a365d;
             color: #fff;
@@ -148,25 +165,11 @@
             font-size: 13px;
             transition: 0.3s;
         }
-        .read-more-btn:hover {
+        .action-btn:hover {
             background-color: #2c5282;
         }
-        .book-card {
-            border-right: 4px solid #1a365d;
-        }
-        .media-link {
-            display: inline-block;
-            background-color: #1a365d;
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .media-link:hover {
-            background-color: #2c5282;
-        }
+        .book-card { border-right: 4px solid #1a365d; }
+        .fatwa-card { border-right: 4px solid #b7791f; }
     </style>
 </head>
 <body>
@@ -193,68 +196,128 @@
     </div>
 
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="ابحث في الموقع" onkeyup="searchWebsite()">
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث في الموقع (عن مقال، كتاب، محاضرة، فتوى...)" onkeyup="searchWebsite()">
     </div>
 
     <div class="container" id="contentContainer">
-        <!-- قسم المقالات (يتم تعبئته آلياً من ملف articles.js) -->
-        <h3 class="section-title">أحدث المقالات والبحوث</h3>
-        <div id="latestArticlesContainer">
-            <!-- ستظهر هنا أحدث 3 مقالات آلياً -->
+        
+        <!-- قسم المقالات -->
+        <div class="section-header">
+            <h3 class="section-title">أحدث المقالات والبحوث</h3>
+            <a href="articles.html" class="more-link">عرض كل المقالات <i class="fas fa-arrow-left"></i></a>
         </div>
+        <div id="latestArticlesContainer"></div>
 
         <!-- قسم الكتب والبحوث -->
-        <h3 class="section-title">الكتب والبحوث</h3>
-        <div class="card book-card searchable-item">
-            <h3>اسم الكتاب الأول (أو العنوان العلمي)</h3>
-            <p>نبذة تعريفية مختصرة عن الكتاب، توضح مضمونه وموضوعه العلمي وأبرز المباحث التي يحتوي عليها.</p>
-            <a href="books.html" class="read-more-btn" style="margin-top: 10px;">تصفح قسم الكتب</a>
+        <div class="section-header">
+            <h3 class="section-title">أحدث الكتب والبحوث</h3>
+            <a href="books.html" class="more-link">عرض كل الكتب <i class="fas fa-arrow-left"></i></a>
         </div>
+        <div id="latestBooksContainer"></div>
 
         <!-- قسم المحاضرات والدروس -->
-        <h3 class="section-title">المحاضرات والدروس</h3>
-        <div class="card searchable-item">
-            <h3>عنوان المحاضرة أو الدرس المرئي/الصوتي الأول</h3>
-            <p>وصف مختصر لمحتوى الدرس أو المحاضرة العلمية...</p>
-            <a href="lectures.html" class="media-link" style="margin-top: 10px;">تصفح قسم المحاضرات</a>
+        <div class="section-header">
+            <h3 class="section-title">أحدث المحاضرات والدروس</h3>
+            <a href="lectures.html" class="more-link">عرض كل المحاضرات <i class="fas fa-arrow-left"></i></a>
         </div>
+        <div id="latestLecturesContainer"></div>
 
         <!-- قسم الفتاوى -->
-        <h3 class="section-title">الفتاوى</h3>
-        <div class="card searchable-item" style="border-right: 4px solid #b7791f;">
-            <h3>عنوان أو موضوع الفتوى الشرعية الأولى</h3>
-            <p>ملخص للسؤال والجواب الشرعي المختصر...</p>
-            <a href="fatwas.html" class="read-more-btn" style="margin-top: 10px; background-color: #b7791f;">تصفح قسم الفتاوى</a>
+        <div class="section-header">
+            <h3 class="section-title">أحدث الفتاوى</h3>
+            <a href="fatwas.html" class="more-link">عرض كل الفتاوى <i class="fas fa-arrow-left"></i></a>
         </div>
+        <div id="latestFatwasContainer"></div>
+
     </div>
 
-    <!-- استدعاء ملف البيانات والسكريبت المسؤول عن عرض المقالات آلياً -->
+    <!-- استدعاء ملفات البيانات لكل الأقسام -->
     <script src="articles.js"></script>
+    <script src="books.js"></script>
+    <script src="lectures.js"></script>
+    <script src="fatwas.js"></script>
+
     <script>
-        // عرض أحدث 3 مقالات تلقائياً في الصفحة الرئيسية
         document.addEventListener("DOMContentLoaded", function() {
-            const container = document.getElementById("latestArticlesContainer");
+            
+            // 1. عرض أحدث 3 مقالات
+            const articlesContainer = document.getElementById("latestArticlesContainer");
             if (typeof allArticles !== 'undefined' && allArticles.length > 0) {
-                // اخذ أول 3 مقالات فقط
-                const latest = allArticles.slice(0, 3);
-                let htmlContent = "";
-                
-                latest.forEach(article => {
-                    htmlContent += `
-                        <div class="card searchable-item article-card">
-                            <h3>${article.title}</h3>
-                            <div class="article-author">${article.author}</div>
-                            <div class="article-snippet">${article.snippet}</div>
-                            <a href="read.html?id=${article.id}" class="read-more-btn">قراءة المقال كاملاً</a>
+                let html = "";
+                allArticles.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card searchable-item">
+                            <h3>${item.title}</h3>
+                            <div class="card-author">${item.author}</div>
+                            <div class="card-snippet">${item.snippet}</div>
+                            <a href="read.html?id=${item.id}" class="action-btn">قراءة المقال كاملاً</a>
                         </div>
                     `;
                 });
-                container.innerHTML = htmlContent;
+                articlesContainer.innerHTML = html;
             } else {
-                container.innerHTML = "<p>لا توجد مقالات منشورة حالياً.</p>";
+                articlesContainer.innerHTML = "<p>لا توجد مقالات منشورة حالياً.</p>";
+            }
+
+            // 2. عرض أحدث 3 كتب
+            const booksContainer = document.getElementById("latestBooksContainer");
+            if (typeof allBooks !== 'undefined' && allBooks.length > 0) {
+                let html = "";
+                allBooks.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card book-card searchable-item">
+                            <h3>${item.title}</h3>
+                            <div class="card-author">${item.author}</div>
+                            <div class="card-snippet">${item.snippet}</div>
+                            <a href="${item.downloadLink}" class="action-btn"><i class="fas fa-book-open"></i> تصفح أو تحميل الكتاب</a>
+                        </div>
+                    `;
+                });
+                booksContainer.innerHTML = html;
+            } else {
+                booksContainer.innerHTML = "<p>لا توجد كتب منشورة حالياً.</p>";
+            }
+
+            // 3. عرض أحدث 3 محاضرات
+            const lecturesContainer = document.getElementById("latestLecturesContainer");
+            if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
+                let html = "";
+                allLectures.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card searchable-item">
+                            <h3>${item.title}</h3>
+                            <div class="card-author">${item.author}</div>
+                            <div class="card-snippet">${item.snippet}</div>
+                            <a href="${item.mediaUrl}" target="_blank" class="action-btn"><i class="fas fa-play-circle"></i> مشاهدة / الاستماع للدرس</a>
+                        </div>
+                    `;
+                });
+                lecturesContainer.innerHTML = html;
+            } else {
+                lecturesContainer.innerHTML = "<p>لا توجد محاضرات منشورة حالياً.</p>";
+            }
+
+            // 4. عرض أحدث 3 فتاوى
+            const fatwasContainer = document.getElementById("latestFatwasContainer");
+            if (typeof allFatwas !== 'undefined' && allFatwas.length > 0) {
+                let html = "";
+                allFatwas.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card fatwa-card searchable-item">
+                            <h3>${item.title}</h3>
+                            <div class="card-author">${item.author}</div>
+                            <div class="card-snippet">${item.snippet}</div>
+                            <a href="fatwas.html" class="action-btn" style="background-color: #b7791f;">تصفح قسم الفتاوى</a>
+                        </div>
+                    `;
+                });
+                fatwasContainer.innerHTML = html;
+            } else {
+                fatwasContainer.innerHTML = "<p>لا توجد فتاوى منشورة حالياً.</p>";
             }
         });
 
+        // دالة البحث الشامل في كل بطاقات الصفحة الرئيسية
         function searchWebsite() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable-item');
@@ -271,5 +334,5 @@
     </script>
 
 </body>
-    </html>
-    
+                                            </html>
+                
