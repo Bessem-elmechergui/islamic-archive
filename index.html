@@ -31,7 +31,10 @@
         .card-snippet { font-size: 14px; color: #4a5568; margin-bottom: 15px; }
         .action-btn { display: inline-block; background-color: #1a365d; color: #fff; padding: 6px 14px; border-radius: 4px; text-decoration: none; font-size: 13px; text-align: center; transition: 0.3s; align-self: flex-start; }
         .action-btn:hover { background-color: #2c5282; }
-        footer { background-color: #1a365d; color: #fff; text-align: center; padding: 20px; margin-top: 40px; font-size: 14px; }
+        .media-container { width: 100%; margin-bottom: 15px; border-radius: 6px; overflow: hidden; background: #000; }
+        .media-container iframe, .media-container video, .media-container audio { width: 100%; display: block; border: none; }
+        .media-container iframe { height: 180px; }
+        .media-container audio { padding: 10px; width: 100%; }
     </style>
 </head>
 <body>
@@ -65,42 +68,30 @@
             <span>أحدث المقالات</span>
             <a href="articles.html">عرض الكل <i class="fas fa-arrow-left"></i></a>
         </div>
-        <div class="grid" id="latestArticlesContainer">
-            <!-- سيتم جلب المقالات هنا آلياً -->
-        </div>
+        <div class="grid" id="latestArticlesContainer"></div>
 
         <!-- قسم الكتب والبحوث -->
         <div class="section-title">
             <span>أحدث الكتب والبحوث</span>
             <a href="books.html">عرض الكل <i class="fas fa-arrow-left"></i></a>
         </div>
-        <div class="grid" id="latestBooksContainer">
-            <!-- سيتم جلب الكتب هنا آلياً -->
-        </div>
+        <div class="grid" id="latestBooksContainer"></div>
 
         <!-- قسم المحاضرات -->
         <div class="section-title">
             <span>أحدث المحاضرات والدروس</span>
             <a href="lectures.html">عرض الكل <i class="fas fa-arrow-left"></i></a>
         </div>
-        <div class="grid" id="latestLecturesContainer">
-            <!-- سيتم جلب المحاضرات هنا آلياً -->
-        </div>
+        <div class="grid" id="latestLecturesContainer"></div>
 
-        <!-- قسم الفتاوى (المعدل حديثاً) -->
+        <!-- قسم الفتاوى -->
         <div class="section-title">
             <span>أحدث الفتاوى</span>
             <a href="fatwas.html">عرض الكل <i class="fas fa-arrow-left"></i></a>
         </div>
-        <div class="grid" id="latestFatwasContainer">
-            <!-- سيتم جلب الفتاوى هنا آلياً -->
-        </div>
+        <div class="grid" id="latestFatwasContainer"></div>
 
     </div>
-
-    <footer>
-        <p>جميع الحقوق محفوظة © الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</p>
-    </footer>
 
     <!-- ملفات البيانات -->
     <script src="articles.js"></script>
@@ -149,14 +140,21 @@
                 booksContainer.innerHTML = html;
             }
 
-            // 3. المحاضرات
+            // 3. المحاضرات (مع دعم ظهور الميديا والفيديو بشكل صحيح)
             const lecturesContainer = document.getElementById("latestLecturesContainer");
             if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
                 let html = "";
                 allLectures.slice(0, 3).forEach(item => {
+                    let mediaHtml = "";
+                    if (item.youtubeId) {
+                        mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${item.youtubeId}" allowfullscreen></iframe></div>`;
+                    } else if (item.audioUrl) {
+                        mediaHtml = `<div class="media-container"><audio controls src="${item.audioUrl}"></audio></div>`;
+                    }
                     html += `
                         <div class="card">
                             <div>
+                                ${mediaHtml}
                                 <h3>${item.title}</h3>
                                 <div class="card-author">${item.author}</div>
                                 <div class="card-snippet">${item.snippet}</div>
@@ -168,7 +166,7 @@
                 lecturesContainer.innerHTML = html;
             }
 
-            // 4. الفتاوى (تعرض أحدث 3 فتاوى مع زر قراءة الفتوى كاملة يوجه لصفحة الفتاوى)
+            // 4. الفتاوى
             const fatwasContainer = document.getElementById("latestFatwasContainer");
             if (typeof allFatwas !== 'undefined' && allFatwas.length > 0) {
                 let html = "";
@@ -190,5 +188,5 @@
         });
     </script>
 </body>
-            </html>
+                </html>
     
