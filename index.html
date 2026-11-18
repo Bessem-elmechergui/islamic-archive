@@ -17,12 +17,9 @@
         nav { background-color: #1a365d; display: flex; justify-content: center; flex-wrap: wrap; padding: 10px; }
         nav a { color: #ffffff; text-decoration: none; padding: 8px 15px; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #cbd5e1; }
-        
-        /* تنسيق قسم الـ Hero بدون صورة */
-        .hero { background: linear-gradient(rgba(26,54,93,0.9), rgba(26,54,93,0.9)), #1a365d; color: #fff; text-align: center; padding: 50px 20px; }
-        .hero h2 { font-size: 26px; margin-bottom: 10px; color: #fff; }
-        .hero p { font-size: 16px; opacity: 0.95; max-width: 700px; margin: 0 auto; }
-
+        .hero { background: linear-gradient(rgba(26,54,93,0.85), rgba(26,54,93,0.85)), url('images/hero-bg.jpg') center/cover; color: #fff; text-align: center; padding: 50px 20px; }
+        .hero h2 { font-size: 28px; margin-bottom: 10px; }
+        .hero p { font-size: 16px; opacity: 0.9; }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
         .section-title { font-size: 20px; color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         .section-title a { font-size: 14px; color: #b7791f; text-decoration: none; }
@@ -58,7 +55,7 @@
     </nav>
 
     <div class="hero">
-        <h2>الأرشيف العلمي للشيخين</h2>
+        <h2>مرحباً بكم في الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</h2>
         <p>مرجع شامل يضم مقالات، كتب، محاضرات، وفتاوى الشيخين كمال المرزوقي وقيس الخياري</p>
     </div>
 
@@ -141,10 +138,58 @@
                 booksContainer.innerHTML = html;
             }
 
-            // 3. المحاضرات
+            // 3. المحاضرات (مع دعم mediaUrl)
             const lecturesContainer = document.getElementById("latestLecturesContainer");
             if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
                 let html = "";
                 allLectures.slice(0, 3).forEach(item => {
                     let mediaHtml = "";
-                    let targetUrl = item.media
+                    let targetUrl = item.mediaUrl || item.youtubeUrl || item.url || "";
+                    
+                    if (targetUrl) {
+                        let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                        let match = targetUrl.match(regExp);
+                        let ytId = (match && match[2].length === 11) ? match[2] : '';
+                        if (ytId) {
+                            mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
+                        }
+                    }
+
+                    html += `
+                        <div class="card">
+                            <div>
+                                ${mediaHtml}
+                                <h3>${item.title}</h3>
+                                <div class="card-author">${item.author}</div>
+                                <div class="card-snippet">${item.snippet}</div>
+                            </div>
+                            <a href="lectures.html" class="action-btn">مشاهدة الدرس</a>
+                        </div>
+                    `;
+                });
+                lecturesContainer.innerHTML = html;
+            }
+
+            // 4. الفتاوى
+            const fatwasContainer = document.getElementById("latestFatwasContainer");
+            if (typeof allFatwas !== 'undefined' && allFatwas.length > 0) {
+                let html = "";
+                allFatwas.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card">
+                            <div>
+                                <h3>${item.title}</h3>
+                                <div class="card-author">${item.author}</div>
+                                <div class="card-snippet">${item.snippet}</div>
+                            </div>
+                            <a href="fatwas.html" class="action-btn" style="background-color: #b7791f;">قراءة الفتوى كاملة</a>
+                        </div>
+                    `;
+                });
+                fatwasContainer.innerHTML = html;
+            }
+
+        });
+    </script>
+</body>
+    </html>
