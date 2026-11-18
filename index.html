@@ -4,172 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</title>
-    <!-- استيراد خط عربي أنيق وأيقونات FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.8;
-        }
-        header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #eaeaea;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 22px;
-            color: #1a365d;
-            margin-bottom: 5px;
-        }
-        header p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-        .social-header-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #1877f2;
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .social-header-btn:hover {
-            background-color: #145dbf;
-        }
-        nav {
-            background-color: #1a365d;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 10px;
-        }
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            padding: 8px 12px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        nav a:hover {
-            color: #cbd5e1;
-        }
-        .hero {
-            background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1000&q=80') center/cover;
-            color: #ffffff;
-            text-align: center;
-            padding: 50px 20px;
-        }
-        .hero h2 {
-            font-size: 24px;
-            margin-bottom: 0;
-        }
-        .search-container {
-            max-width: 800px;
-            margin: 20px auto 0 auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .search-box {
-            width: 100%;
-            padding: 12px 20px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 15px;
-            border: 2px solid #cbd5e1;
-            border-radius: 25px;
-            outline: none;
-            transition: 0.3s;
-            background-color: #fff;
-        }
-        .search-box:focus {
-            border-color: #1a365d;
-            box-shadow: 0 0 8px rgba(26, 54, 93, 0.2);
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto 30px auto;
-            padding: 0 20px;
-        }
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #1a365d;
-            padding-bottom: 5px;
-            margin: 30px 0 20px 0;
-        }
-        .section-title {
-            font-size: 19px;
-            color: #1a365d;
-            margin: 0;
-        }
-        .more-link {
-            font-size: 13px;
-            color: #1a365d;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .more-link:hover {
-            color: #2c5282;
-            text-decoration: underline;
-        }
-        .card {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .card h3 {
-            font-size: 18px;
-            color: #1a365d;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-        .card-author {
-            font-size: 14px;
-            color: #4a5568;
-            font-weight: bold;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #e2e8f0;
-        }
-        .card-snippet {
-            font-size: 15px;
-            color: #2d3748;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        .action-btn {
-            display: inline-block;
-            background-color: #1a365d;
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .action-btn:hover {
-            background-color: #2c5282;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.8; }
+        header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; padding: 20px; text-align: center; }
+        header h1 { font-size: 22px; color: #1a365d; margin-bottom: 5px; }
+        header p { color: #666; font-size: 14px; margin-bottom: 12px; }
+        .social-header-btn { display: inline-flex; align-items: center; gap: 8px; background-color: #1877f2; color: #fff; padding: 6px 14px; border-radius: 20px; text-decoration: none; font-size: 13px; transition: 0.3s; }
+        .social-header-btn:hover { background-color: #145dbf; }
+        nav { background-color: #1a365d; display: flex; justify-content: center; flex-wrap: wrap; padding: 10px; }
+        nav a { color: #ffffff; text-decoration: none; padding: 8px 12px; font-size: 13px; transition: 0.3s; }
+        nav a:hover { color: #cbd5e1; }
+        .hero { background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1000&q=80') center/cover; color: #ffffff; text-align: center; padding: 50px 20px; }
+        .hero h2 { font-size: 24px; margin-bottom: 0; }
+        .search-container { max-width: 800px; margin: 20px auto 0 auto; padding: 0 20px; text-align: center; }
+        .search-box { width: 100%; padding: 12px 20px; font-family: 'Cairo', sans-serif; font-size: 15px; border: 2px solid #cbd5e1; border-radius: 25px; outline: none; transition: 0.3s; background-color: #fff; }
+        .search-box:focus { border-color: #1a365d; box-shadow: 0 0 8px rgba(26, 54, 93, 0.2); }
+        .container { max-width: 800px; margin: 20px auto 30px auto; padding: 0 20px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1a365d; padding-bottom: 5px; margin: 30px 0 20px 0; }
+        .section-title { font-size: 19px; color: #1a365d; margin: 0; }
+        .more-link { font-size: 13px; color: #1a365d; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .more-link:hover { color: #2c5282; text-decoration: underline; }
+        .card { background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: 0.3s; }
+        .card h3 { font-size: 18px; color: #1a365d; margin-bottom: 8px; line-height: 1.5; }
+        .card-author { font-size: 14px; color: #4a5568; font-weight: bold; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px dashed #e2e8f0; }
+        .card-snippet { font-size: 15px; color: #2d3748; margin-bottom: 15px; text-align: justify; }
+        .action-btn { display: inline-block; background-color: #1a365d; color: #fff; padding: 6px 14px; border-radius: 4px; text-decoration: none; font-size: 13px; transition: 0.3s; }
+        .action-btn:hover { background-color: #2c5282; }
         .book-card { border-right: 4px solid #1a365d; }
         .fatwa-card { border-right: 4px solid #b7791f; }
+        
+        /* تنسيق مشغل الفيديو المضمن */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* تنسيق المشغل الصوتي المضمن */
+        .audio-container {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .audio-container audio {
+            width: 100%;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
@@ -201,28 +96,24 @@
 
     <div class="container" id="contentContainer">
         
-        <!-- قسم المقالات -->
         <div class="section-header">
             <h3 class="section-title">أحدث المقالات والبحوث</h3>
             <a href="articles.html" class="more-link">عرض كل المقالات <i class="fas fa-arrow-left"></i></a>
         </div>
         <div id="latestArticlesContainer"></div>
 
-        <!-- قسم الكتب والبحوث -->
         <div class="section-header">
             <h3 class="section-title">أحدث الكتب والبحوث</h3>
             <a href="books.html" class="more-link">عرض كل الكتب <i class="fas fa-arrow-left"></i></a>
         </div>
         <div id="latestBooksContainer"></div>
 
-        <!-- قسم المحاضرات والدروس -->
         <div class="section-header">
             <h3 class="section-title">أحدث المحاضرات والدروس</h3>
             <a href="lectures.html" class="more-link">عرض كل المحاضرات <i class="fas fa-arrow-left"></i></a>
         </div>
         <div id="latestLecturesContainer"></div>
 
-        <!-- قسم الفتاوى -->
         <div class="section-header">
             <h3 class="section-title">أحدث الفتاوى</h3>
             <a href="fatwas.html" class="more-link">عرض كل الفتاوى <i class="fas fa-arrow-left"></i></a>
@@ -231,7 +122,6 @@
 
     </div>
 
-    <!-- استدعاء ملفات البيانات لكل الأقسام -->
     <script src="articles.js"></script>
     <script src="books.js"></script>
     <script src="lectures.js"></script>
@@ -240,7 +130,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
-            // 1. عرض أحدث 3 مقالات
+            // المقالات
             const articlesContainer = document.getElementById("latestArticlesContainer");
             if (typeof allArticles !== 'undefined' && allArticles.length > 0) {
                 let html = "";
@@ -255,11 +145,9 @@
                     `;
                 });
                 articlesContainer.innerHTML = html;
-            } else {
-                articlesContainer.innerHTML = "<p>لا توجد مقالات منشورة حالياً.</p>";
             }
 
-            // 2. عرض أحدث 3 كتب
+            // الكتب
             const booksContainer = document.getElementById("latestBooksContainer");
             if (typeof allBooks !== 'undefined' && allBooks.length > 0) {
                 let html = "";
@@ -274,30 +162,48 @@
                     `;
                 });
                 booksContainer.innerHTML = html;
-            } else {
-                booksContainer.innerHTML = "<p>لا توجد كتب منشورة حالياً.</p>";
             }
 
-            // 3. عرض أحدث 3 محاضرات
+            // المحاضرات (تدعم الفيديو والصوتيات تلقائياً)
             const lecturesContainer = document.getElementById("latestLecturesContainer");
             if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
                 let html = "";
                 allLectures.slice(0, 3).forEach(item => {
+                    let mediaContent = "";
+                    
+                    // التحقق مما إذا كان الرابط يوتيوب أم ملف صوتي
+                    if (item.mediaUrl.includes("youtube.com") || item.mediaUrl.includes("youtu.be")) {
+                        let embedUrl = item.mediaUrl.replace("watch?v=", "embed/").replace("youtu.be/", "www.youtube.com/embed/");
+                        mediaContent = `
+                            <div class="video-container">
+                                <iframe src="${embedUrl}" title="${item.title}" allowfullscreen></iframe>
+                            </div>
+                        `;
+                    } else {
+                        // مشغل صوتي للملفات الصوتية
+                        mediaContent = `
+                            <div class="audio-container">
+                                <audio controls>
+                                    <source src="${item.mediaUrl}" type="audio/mpeg">
+                                    متصفحك لا يدعم تشغيل الملفات الصوتية.
+                                </audio>
+                            </div>
+                        `;
+                    }
+
                     html += `
                         <div class="card searchable-item">
                             <h3>${item.title}</h3>
                             <div class="card-author">${item.author}</div>
+                            ${mediaContent}
                             <div class="card-snippet">${item.snippet}</div>
-                            <a href="${item.mediaUrl}" target="_blank" class="action-btn"><i class="fas fa-play-circle"></i> مشاهدة / الاستماع للدرس</a>
                         </div>
                     `;
                 });
                 lecturesContainer.innerHTML = html;
-            } else {
-                lecturesContainer.innerHTML = "<p>لا توجد محاضرات منشورة حالياً.</p>";
             }
 
-            // 4. عرض أحدث 3 فتاوى
+            // الفتاوى
             const fatwasContainer = document.getElementById("latestFatwasContainer");
             if (typeof allFatwas !== 'undefined' && allFatwas.length > 0) {
                 let html = "";
@@ -312,16 +218,12 @@
                     `;
                 });
                 fatwasContainer.innerHTML = html;
-            } else {
-                fatwasContainer.innerHTML = "<p>لا توجد فتاوى منشورة حالياً.</p>";
             }
         });
 
-        // دالة البحث الشامل في كل بطاقات الصفحة الرئيسية
         function searchWebsite() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable-item');
-
             for (let i = 0; i < cards.length; i++) {
                 let text = cards[i].innerText.toLowerCase();
                 if (text.includes(input)) {
@@ -332,7 +234,5 @@
             }
         }
     </script>
-
 </body>
-                                            </html>
-                
+</html>
