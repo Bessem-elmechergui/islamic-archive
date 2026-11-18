@@ -140,21 +140,31 @@
                 booksContainer.innerHTML = html;
             }
 
-            // 3. المحاضرات (مع دعم ظهور الفيديوهات بشكل آلي)
+            // 3. المحاضرات (مع التقاط ذكي لأي رابط فيديو بغض النظر عن اسم الخاصية)
             const lecturesContainer = document.getElementById("latestLecturesContainer");
             if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
                 let html = "";
                 allLectures.slice(0, 3).forEach(item => {
                     let mediaHtml = "";
-                    if (item.youtubeId) {
-                        mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${item.youtubeId}" allowfullscreen></iframe></div>`;
-                    } else if (item.youtubeUrl) {
-                        let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-                        let match = item.youtubeUrl.match(regExp);
-                        let ytId = (match && match[2].length === 11) ? match[2] : '';
-                        if (ytId) {
-                            mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
+                    
+                    // دالة مساعدة لاستخراج معرف يوتيوب من أي نص أو رابط داخل كائن العنصر
+                    let ytId = "";
+                    let targetUrl = item.youtubeId || item.youtubeUrl || item.videoUrl || item.url || item.link || "";
+                    
+                    if (targetUrl) {
+                        if (targetUrl.length === 11 && !targetUrl.includes("/")) {
+                            ytId = targetUrl;
+                        } else {
+                            let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                            let match = targetUrl.match(regExp);
+                            if (match && match[2].length === 11) {
+                                ytId = match[2];
+                            }
                         }
+                    }
+
+                    if (ytId) {
+                        mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
                     } else if (item.audioUrl) {
                         mediaHtml = `<div class="media-container"><audio controls src="${item.audioUrl}"></audio></div>`;
                     }
@@ -196,5 +206,4 @@
         });
     </script>
 </body>
-    </html>
-            
+</html>
