@@ -182,7 +182,7 @@
     <nav>
         <a href="index.html">الرئيسية</a>
         <a href="about.html">عن الشيخين</a>
-        <a href="index.html">المقالات</a>
+        <a href="articles.html">المقالات</a>
         <a href="index.html">الكتب والبحوث</a>
         <a href="index.html">المحاضرات والدروس</a>
         <a href="index.html">الفتاوى</a>
@@ -197,42 +197,14 @@
     </div>
 
     <div class="container" id="contentContainer">
-        <!-- قسم المقالات -->
+        <!-- قسم المقالات (يتم تعبئته آلياً من ملف articles.js) -->
         <h3 class="section-title">أحدث المقالات والبحوث</h3>
-        
-        <!-- المقال الأول مع رابط لصفحته المستقلة -->
-        <div class="card searchable-item article-card">
-            <h3>الصلاة على رسول الله صلى الله عليه وسلم دعاء مستجاب يقينا وقطعا !</h3>
-            <div class="article-author">الشيخ كمال المرزوقي</div>
-            <div class="article-snippet">
-                لا دعاء مستجاب يقينا وقطعا، بلا شرط، صحّت فيه نيّتك أو لم تصحّ، أخلصت فيه أو لم تفعل، بل اعتقدت ما فيه أو لا، إلّا الصّلاة على رسول الله صلّى الله عليه وسلّم. وإذا جعلت كلّ دعائك: الصّلاة على رسول الله صلّى الله عليه وسلّم، كفيت ما أهمّك وغفر ذنبك...
-            </div>
-            <a href="article-salat.html" class="read-more-btn">قراءة المقال كاملاً</a>
-        </div>
-
-        <!-- المقال الثاني (مساحة جاهزة) -->
-        <div class="card searchable-item article-card">
-            <h3>عنوان المقال أو البحث الثاني</h3>
-            <div class="article-author">الشيخ كمال المرزوقي أو الشيخ قيس الخياري</div>
-            <div class="article-snippet">
-                هنا يتم وضع ملخص أو فقرة تمهيدية قصيرة للمقال الثاني، لتشجيع القارئ على متابعة القراءة والاطلاع...
-            </div>
-            <a href="#" class="read-more-btn">قراءة المقال كاملاً</a>
-        </div>
-
-        <!-- المقال الثالث (مساحة جاهزة) -->
-        <div class="card searchable-item article-card">
-            <h3>عنوان المقال أو البحث الثالث</h3>
-            <div class="article-author">الشيخ كمال المرزوقي أو الشيخ قيس الخياري</div>
-            <div class="article-snippet">
-                هنا يتم وضع ملخص أو فقرة تمهيدية قصيرة للمقال الثالث، لتشجيع القارئ على متابعة القراءة والاطلاع...
-            </div>
-            <a href="#" class="read-more-btn">قراءة المقال كاملاً</a>
+        <div id="latestArticlesContainer">
+            <!-- ستظهر هنا أحدث 3 مقالات آلياً -->
         </div>
 
         <!-- قسم الكتب والبحوث -->
         <h3 class="section-title">الكتب والبحوث</h3>
-        
         <div class="card book-card searchable-item">
             <h3>اسم الكتاب الأول (أو العنوان العلمي)</h3>
             <p>نبذة تعريفية مختصرة عن الكتاب، توضح مضمونه وموضوعه العلمي وأبرز المباحث التي يحتوي عليها.</p>
@@ -240,7 +212,6 @@
 
         <!-- قسم المحاضرات والدروس -->
         <h3 class="section-title">المحاضرات والدروس</h3>
-        
         <div class="card searchable-item">
             <h3>عنوان المحاضرة أو الدرس المرئي/الصوتي الأول</h3>
             <p>وصف مختصر لمحتوى الدرس أو المحاضرة العلمية...</p>
@@ -248,7 +219,33 @@
         </div>
     </div>
 
+    <!-- استدعاء ملف البيانات والسكريبت المسؤول عن عرض المقالات آلياً -->
+    <script src="articles.js"></script>
     <script>
+        // عرض أحدث 3 مقالات تلقائياً في الصفحة الرئيسية
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("latestArticlesContainer");
+            if (typeof allArticles !== 'undefined' && allArticles.length > 0) {
+                // اخذ أول 3 مقالات فقط
+                const latest = allArticles.slice(0, 3);
+                let htmlContent = "";
+                
+                latest.forEach(article => {
+                    htmlContent += `
+                        <div class="card searchable-item article-card">
+                            <h3>${article.title}</h3>
+                            <div class="article-author">${article.author}</div>
+                            <div class="article-snippet">${article.snippet}</div>
+                            <a href="read.html?id=${article.id}" class="read-more-btn">قراءة المقال كاملاً</a>
+                        </div>
+                    `;
+                });
+                container.innerHTML = htmlContent;
+            } else {
+                container.innerHTML = "<p>لا توجد مقالات منشورة حالياً.</p>";
+            }
+        });
+
         function searchWebsite() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('searchable-item');
@@ -265,4 +262,5 @@
     </script>
 
 </body>
-</html>
+    </html>
+            
