@@ -75,7 +75,7 @@
                     <div class="card-author">باحث، مؤلف، ومعالج نفسي</div>
                     <div class="card-snippet">يترأس جامعة الإمام مالك للعلوم الشرعية منذ عام 2013، وتتوزع اهتماماته بين العلوم الشرعية وعلم النفس والذكاء الاصطناعي.</div>
                 </div>
-                <a href="about.html#kamal-al-marzouqi" class="action-btn">قراءة المقال كاملة</a>
+                <a href="about.html?sheikh=kamal" class="action-btn">قراءة المقال كاملة</a>
             </div>
 
             <div class="card">
@@ -84,7 +84,7 @@
                     <div class="card-author">باحث وداعية إسلامي</div>
                     <div class="card-snippet">عُرف بعنايته بالعلوم الشرعية، ودراسة الحديث النبوي الشريف، ومسائل الاعتقاد، وله العديد من المؤلفات العلمية.</div>
                 </div>
-                <a href="about.html#qais-al-khiyari" class="action-btn">قراءة المقال كاملة</a>
+                <a href="about.html?sheikh=qais" class="action-btn">قراءة المقال كاملة</a>
             </div>
         </div>
         
@@ -139,5 +139,57 @@
             }
 
             // 2. المحاضرات
+            const lecturesContainer = document.getElementById("latestLecturesContainer");
+            if (typeof allLectures !== 'undefined' && allLectures.length > 0) {
+                let html = "";
+                allLectures.slice(0, 3).forEach(item => {
+                    let mediaHtml = "";
+                    let targetUrl = item.mediaUrl || item.youtubeUrl || item.url || "";
+                    
+                    if (targetUrl) {
+                        let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                        let match = targetUrl.match(regExp);
+                        let ytId = (match && match[2].length === 11) ? match[2] : '';
+                        if (ytId) {
+                            mediaHtml = `<div class="media-container"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
+                        }
+                    }
 
-                        
+                    html += `
+                        <div class="card">
+                            <div>
+                                ${mediaHtml}
+                                <h3>${item.title}</h3>
+                                <div class="card-author">${item.author}</div>
+                                <div class="card-snippet">${item.snippet}</div>
+                            </div>
+                            <a href="lectures.html" class="action-btn">مشاهدة الدرس</a>
+                        </div>
+                    `;
+                });
+                lecturesContainer.innerHTML = html;
+            }
+
+            // 3. الفتاوى
+            const fatwasContainer = document.getElementById("latestFatwasContainer");
+            if (typeof allFatwas !== 'undefined' && allFatwas.length > 0) {
+                let html = "";
+                allFatwas.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card">
+                            <div>
+                                <h3>${item.title}</h3>
+                                <div class="card-author">${item.author}</div>
+                                <div class="card-snippet">${item.snippet}</div>
+                            </div>
+                            <a href="fatwas.html" class="action-btn" style="background-color: #b7791f;">قراءة الفتوى كاملة</a>
+                        </div>
+                    `;
+                });
+                fatwasContainer.innerHTML = html;
+            }
+
+        });
+    </script>
+</body>
+</html>
