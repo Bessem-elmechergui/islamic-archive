@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cairo', sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.8; }
         header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; padding: 20px; text-align: center; }
@@ -16,7 +15,7 @@
         nav a { color: #ffffff; text-decoration: none; padding: 8px 12px; font-size: 13px; transition: 0.3s; }
         nav a:hover { color: #cbd5e1; }
         .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
-        .sheikh-section { background: #fff; padding: 28px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 28px; scroll-margin-top: 20px; }
+        .sheikh-section { background: #fff; padding: 28px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 28px; }
         h2.sheikh-title { font-size: 21px; color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 6px; margin-bottom: 15px; }
         h3 { font-size: 16px; color: #2d3748; margin: 16px 0 8px 0; }
         p, li { font-size: 14px; color: #4a5568; margin-bottom: 10px; }
@@ -33,9 +32,9 @@
     <nav>
         <a href="index.html">الرئيسية</a>
         <a href="about.html">عن الشيخين</a>
-        <a href="index.html">المقالات</a>
-        <a href="index.html">الكتب والبحوث</a>
-        <a href="index.html">المحاضرات والدروس</a>
+        <a href="articles.html">المقالات</a>
+        <a href="lectures.html">المحاضرات والدروس</a>
+        <a href="fatwas.html">الفتاوى</a>
     </nav>
 
     <main class="container">
@@ -94,6 +93,23 @@
             </ul>
         </section>
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const sheikh = params.get("sheikh");
+            const kamalSection = document.getElementById("kamal-al-marzouqi");
+            const qaisSection = document.getElementById("qais-al-khiyari");
+
+            if (sheikh === "kamal") {
+                qaisSection.style.display = "none";
+                kamalSection.style.display = "block";
+            } else if (sheikh === "qais") {
+                kamalSection.style.display = "none";
+                qaisSection.style.display = "block";
+            }
+        });
+    </script>
 
 </body>
 </html>
