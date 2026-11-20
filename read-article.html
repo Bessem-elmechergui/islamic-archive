@@ -18,7 +18,7 @@
         nav a { color: #ffffff; text-decoration: none; padding: 8px 12px; font-size: 13px; transition: 0.3s; }
         nav a:hover { color: #cbd5e1; }
         .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
-        .article-box { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .article-box { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 4px solid #b7791f; }
         .article-title { font-size: 22px; color: #1a365d; margin-bottom: 10px; line-height: 1.6; }
         .article-author { font-size: 15px; color: #4a5568; font-weight: bold; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px dashed #e2e8f0; }
         .article-content p { font-size: 16px; color: #2d3748; margin-bottom: 15px; text-align: justify; line-height: 2; }
@@ -51,38 +51,60 @@
         </div>
     </div>
 
-    <!-- ملف البيانات والمقالات -->
+    <!-- ملف فهرس المقالات -->
     <script src="articles.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", async function() {
             const urlParams = new URLSearchParams(window.location.search);
             const articleId = urlParams.get('id');
             const container = document.getElementById("articleContainer");
 
-            if (typeof allArticles !== 'undefined' && articleId) {
-                const foundArticle = allArticles.find(item => item.id === articleId);
-                
-                if (foundArticle) {
-                    document.title = foundArticle.title + " - الأرشيف العلمي";
-                    container.innerHTML = `
-                        <h2 class="article-title">${foundArticle.title}</h2>
-                        <div class="article-author">${foundArticle.author}</div>
-                        <div class="article-content">
-                            ${foundArticle.content || foundArticle.snippet}
-                        </div>
-                        <a href="articles.html" class="back-btn"><i class="fas fa-arrow-right"></i> العودة إلى المقالات</a>
-                    `;
-                    return;
-                }
+            if (!articleId) {
+                showNotFound("لم يتم تحديد مقال للقراءة.");
+                return;
             }
-            
-            // في حال لم يتم العثور على المقال
-            container.innerHTML = `
-                <h2 class="article-title" style="color: #c53030;">عذراً، المقال غير موجود</h2>
-                <p style="margin: 15px 0;">لم يتم العثور على المقال المطلوب أو تم حذفه.</p>
-                <a href="articles.html" class="back-btn"><i class="fas fa-arrow-right"></i> العودة إلى المقالات</a>
-            `;
+
+            const metaFromIndex = (typeof allArticles !== 'undefined')
+                ? allArticles.find(item => item.id === articleId)
+                : null;
+
+            try {
+                const response = await fetch(`data/articles/${encodeURIComponent(articleId)}.json`);
+                if (!response.ok) {
+                    throw new Error("ملف المقال غير موجود");
+                }
+
+                const articleData = await response.json();
+                const title = articleData.title || (metaFromIndex && metaFromIndex.title) || "مقال علمي";
+                const author = articleData.author || (metaFromIndex && metaFromIndex.author) || "";
+                const date = articleData.date || (metaFromIndex && metaFromIndex.date) || "";
+                const content = articleData.content || "";
+
+                document.title = title + " - الأرشيف العلمي";
+                container.innerHTML = `
+                    <h2 class="article-title">${title}</h2>
+                    <div class="article-author">
+                        ${author ? `<span>${author}</span>` : ""}
+                        ${date ? ` <span style="font-weight: normal; color: #718096; font-size: 13px;">— ${date}</span>` : ""}
+                    </div>
+                    <div class="article-content">
+                        ${content}
+                    </div>
+                    <a href="articles.html" class="back-btn"><i class="fas fa-arrow-right"></i> العودة إلى المقالات</a>
+                `;
+            } catch (err) {
+                showNotFound("تعذر تحميل نص هذا المقال، قد يكون ملفه غير منشور بعد.");
+            }
+
+            function showNotFound(message) {
+                container.innerHTML = `
+                    <h2 class="article-title" style="color: #c53030;">عذراً، المقال غير موجود</h2>
+                    <p style="margin: 15px 0;">${message}</p>
+                    <a href="articles.html" class="back-btn"><i class="fas fa-arrow-right"></i> العودة إلى المقالات</a>
+                `;
+            }
         });
     </script>
 </body>
-</html>
+            </html>
+            
