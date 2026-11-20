@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قراءة الفتوى - الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background-color: #f9f9f9; color: #333; line-height: 1.9; }
+        header { background-color: #ffffff; border-bottom: 1px solid #eaeaea; padding: 20px; text-align: center; }
+        header h1 { font-size: 24px; color: #1a365d; margin-bottom: 5px; }
+        header p { color: #666; font-size: 14px; margin-bottom: 12px; }
+        nav { background-color: #1a365d; display: flex; justify-content: center; flex-wrap: wrap; padding: 10px; }
+        nav a { color: #ffffff; text-decoration: none; padding: 8px 15px; font-size: 14px; transition: 0.3s; }
+        nav a:hover { color: #cbd5e1; }
+        .container { max-width: 850px; margin: 35px auto; padding: 0 20px; }
+        .fatwa-box { background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-right: 4px solid #b7791f; }
+        .fatwa-title { font-size: 24px; color: #1a365d; margin-bottom: 12px; line-height: 1.5; }
+        .fatwa-meta { font-size: 14px; color: #4a5568; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid #edf2f7; display: flex; flex-wrap: wrap; gap: 15px; }
+        .fatwa-content p { margin-bottom: 16px; font-size: 16px; color: #2d3748; }
+        .back-btn { display: inline-block; margin-top: 25px; background-color: #b7791f; color: #fff; padding: 8px 18px; border-radius: 4px; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .back-btn:hover { background-color: #975a16; }
+        .not-found { text-align: center; padding: 30px 10px; color: #4a5568; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>الأرشيف العلمي للشيخين كمال المرزوقي وقيس الخياري</h1>
+        <p>قسم الفتاوى الشرعية</p>
+    </header>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عن الشيخين</a>
+        <a href="articles.html">المقالات</a>
+        <a href="books.html">الكتب والبحوث</a>
+        <a href="lectures.html">المحاضرات والدروس</a>
+        <a href="fatwas.html" style="color: #cbd5e1; font-weight: bold;">الفتاوى</a>
+    </nav>
+
+    <div class="container">
+        <div class="fatwa-box" id="fatwaContainer">
+            <div class="not-found">جاري تحميل الفتوى...</div>
+        </div>
+    </div>
+
+    <script src="fatwas.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("fatwaContainer");
+            const params = new URLSearchParams(window.location.search);
+            const fatwaId = params.get("id");
+
+            if (typeof allFatwas !== "undefined" && fatwaId) {
+                const fatwa = allFatwas.find(item => item.id === fatwaId);
+
+                if (fatwa) {
+                    document.title = fatwa.title + " - الفتاوى";
+                    container.innerHTML = `
+                        <h2 class="fatwa-title">${fatwa.title}</h2>
+                        <div class="fatwa-meta">
+                            <span><strong>المفتي:</strong> ${fatwa.author}</span>
+                            ${fatwa.date ? `<span><strong>التاريخ:</strong> ${fatwa.date}</span>` : ""}
+                        </div>
+                        <div class="fatwa-content">
+                            ${fatwa.content}
+                        </div>
+                        <a href="fatwas.html" class="back-btn">العودة إلى الفتاوى</a>
+                    `;
+                    return;
+                }
+            }
+
+            container.innerHTML = `
+                <div class="not-found">
+                    <h3>الفتوى المطلوبة غير موجودة</h3>
+                    <p>قد يكون الرابط غير صحيح أو تم حذف هذه الفتوى.</p>
+                    <a href="fatwas.html" class="back-btn">العودة إلى الفتاوى</a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
