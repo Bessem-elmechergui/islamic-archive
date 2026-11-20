@@ -135,7 +135,7 @@
                                 <div class="card-author">${item.author}</div>
                                 <div class="card-snippet">${item.snippet}</div>
                             </div>
-                            <a href="read-article.html?id=${item.id}" class="action-btn">قراءة المقال كاملة</a>
+                            <a href="read-article.html?id=${encodeURIComponent(item.id)}" class="action-btn">قراءة المقال كاملة</a>
                         </div>
                     `;
                 });
@@ -167,7 +167,7 @@
                                 <div class="card-author">${item.author}</div>
                                 <div class="card-snippet">${item.snippet}</div>
                             </div>
-                            <a href="lectures.html" class="action-btn">مشاهدة الدرس</a>
+                            <a href="read-lecture.html?id=${encodeURIComponent(item.id)}" class="action-btn">مشاهدة الدرس</a>
                         </div>
                     `;
                 });
@@ -186,7 +186,7 @@
                                 <div class="card-author">${item.author}</div>
                                 <div class="card-snippet">${item.snippet}</div>
                             </div>
-                            <a href="fatwas.html" class="action-btn" style="background-color: #b7791f;">قراءة الفتوى كاملة</a>
+                            <a href="read-fatwa.html?id=${encodeURIComponent(item.id)}" class="action-btn" style="background-color: #b7791f;">قراءة الفتوى كاملة</a>
                         </div>
                     `;
                 });
@@ -196,4 +196,5 @@
         });
     </script>
 </body>
-</html>
+    </html>
+    
