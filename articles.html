@@ -43,7 +43,6 @@
         <a href="index.html">الرئيسية</a>
         <a href="about.html">عن الشيخين</a>
         <a href="articles.html" style="color: #cbd5e1; font-weight: bold;">المقالات</a>
-        <a href="books.html">الكتب والبحوث</a>
         <a href="lectures.html">المحاضرات والدروس</a>
         <a href="fatwas.html">الفتاوى</a>
     </nav>
@@ -85,7 +84,7 @@
                                 <div class="card-author">${item.author}</div>
                                 <div class="card-snippet">${item.snippet}</div>
                             </div>
-                            <a href="read-article.html?id=${item.id}" class="action-btn">قراءة المقال كاملة</a>
+                            <a href="read-article.html?id=${encodeURIComponent(item.id)}" class="action-btn">قراءة المقال كاملة</a>
                         </div>
                     `;
                 });
