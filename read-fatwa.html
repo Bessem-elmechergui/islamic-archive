@@ -49,39 +49,59 @@
 
     <script src="fatwas.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", async function () {
             const container = document.getElementById("fatwaContainer");
             const params = new URLSearchParams(window.location.search);
             const fatwaId = params.get("id");
 
-            if (typeof allFatwas !== "undefined" && fatwaId) {
-                const fatwa = allFatwas.find(item => item.id === fatwaId);
-
-                if (fatwa) {
-                    document.title = fatwa.title + " - الفتاوى";
-                    container.innerHTML = `
-                        <h2 class="fatwa-title">${fatwa.title}</h2>
-                        <div class="fatwa-meta">
-                            <span><strong>المفتي:</strong> ${fatwa.author}</span>
-                            ${fatwa.date ? `<span><strong>التاريخ:</strong> ${fatwa.date}</span>` : ""}
-                        </div>
-                        <div class="fatwa-content">
-                            ${fatwa.content}
-                        </div>
-                        <a href="fatwas.html" class="back-btn">العودة إلى الفتاوى</a>
-                    `;
-                    return;
-                }
+            if (!fatwaId) {
+                showNotFound("لم يتم تحديد فتوى للقراءة.");
+                return;
             }
 
-            container.innerHTML = `
-                <div class="not-found">
-                    <h3>الفتوى المطلوبة غير موجودة</h3>
-                    <p>قد يكون الرابط غير صحيح أو تم حذف هذه الفتوى.</p>
+            const metaFromIndex = (typeof allFatwas !== "undefined")
+                ? allFatwas.find(item => item.id === fatwaId)
+                : null;
+
+            try {
+                const response = await fetch(`data/fatwas/${encodeURIComponent(fatwaId)}.json`);
+                if (!response.ok) {
+                    throw new Error("ملف الفتوى غير موجود");
+                }
+
+                const fatwaData = await response.json();
+                const title = fatwaData.title || (metaFromIndex && metaFromIndex.title) || "فتوى شرعية";
+                const author = fatwaData.author || (metaFromIndex && metaFromIndex.author) || "";
+                const date = fatwaData.date || (metaFromIndex && metaFromIndex.date) || "";
+                const content = fatwaData.content || "";
+
+                document.title = title + " - الفتاوى";
+                container.innerHTML = `
+                    <h2 class="fatwa-title">${title}</h2>
+                    <div class="fatwa-meta">
+                        ${author ? `<span><strong>المفتي:</strong> ${author}</span>` : ""}
+                        ${date ? `<span><strong>التاريخ:</strong> ${date}</span>` : ""}
+                    </div>
+                    <div class="fatwa-content">
+                        ${content}
+                    </div>
                     <a href="fatwas.html" class="back-btn">العودة إلى الفتاوى</a>
-                </div>
-            `;
+                `;
+            } catch (err) {
+                showNotFound("تعذر تحميل نص هذه الفتوى، قد يكون ملفها غير منشور بعد.");
+            }
+
+            function showNotFound(message) {
+                container.innerHTML = `
+                    <div class="not-found">
+                        <h3>الفتوى المطلوبة غير متوفرة</h3>
+                        <p>${message}</p>
+                        <a href="fatwas.html" class="back-btn">العودة إلى الفتاوى</a>
+                    </div>
+                `;
+            }
         });
     </script>
 </body>
-</html>
+            </html>
+            
