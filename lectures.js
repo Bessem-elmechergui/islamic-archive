@@ -1,6 +1,14 @@
 // فهرس المحاضرات والدروس في الأرشيف العلمي
 const allLectures = [
     {
+        id: "al-ubudiyyah-fi-al-islam-kamal-marzouki",
+        title: "العبودية في الإسلام - الشيخ كمال المرزوقي",
+        author: "الشيخ كمال المرزوقي",
+        date: "15 جمادى الأولى 1448 هـ / 26 نوفمبر 2026 م",
+        snippet: "قراءة تاريخية وفقهية وحضارية لموضوع الرق والعبودية في سياق الردّ على الشبهات، مع بيان كيف قيّد الإسلام مداخل الرق ووسّع مخارجه وحفظ الحقوق.",
+        mediaUrl: "https://www.youtube.com/watch?v=ErrQnHv8Il4"
+    },
+    {
         id: "lecture-podcast-1",
         title: "المناظرة العلمية: بين طلب الحقيقة وصناعة الغلبة",
         author: "الشيخ كمال المرزوقي",
@@ -9,3 +17,4 @@ const allLectures = [
         mediaUrl: "https://www.youtube.com/watch?v=wCBPTWGTf7I"
     }
 ];
+        
