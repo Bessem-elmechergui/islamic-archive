@@ -56,6 +56,7 @@
         <a href="articles.html">المقالات</a>
         <a href="lectures.html">المحاضرات والدروس</a>
         <a href="fatwas.html">الفتاوى</a>
+        <a href="durar.html">درر وفوائد للشيخين</a>
     </nav>
 
     <div class="hero">
@@ -109,6 +110,13 @@
         </div>
         <div class="grid" id="latestFatwasContainer"></div>
 
+        <!-- قسم درر وفوائد للشيخين -->
+        <div class="section-title">
+            <span>أحدث الدرر والفوائد</span>
+            <a href="durar.html">عرض الكل <i class="fas fa-arrow-left"></i></a>
+        </div>
+        <div class="grid" id="latestDurarContainer"></div>
+
     </div>
 
     <footer>
@@ -119,6 +127,7 @@
     <script src="articles.js"></script>
     <script src="lectures.js"></script>
     <script src="fatwas.js"></script>
+    <script src="durar.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -193,8 +202,27 @@
                 fatwasContainer.innerHTML = html;
             }
 
+            // 4. درر وفوائد للشيخين
+            const durarContainer = document.getElementById("latestDurarContainer");
+            if (typeof allDurar !== 'undefined' && allDurar.length > 0) {
+                let html = "";
+                allDurar.slice(0, 3).forEach(item => {
+                    html += `
+                        <div class="card">
+                            <div>
+                                <h3>${item.title}</h3>
+                                <div class="card-author">${item.author}</div>
+                                <div class="card-snippet">${item.snippet}</div>
+                            </div>
+                            <a href="read-durar.html?id=${encodeURIComponent(item.id)}" class="action-btn">قراءة الفائدة كاملة</a>
+                        </div>
+                    `;
+                });
+                durarContainer.innerHTML = html;
+            }
+
         });
     </script>
 </body>
     </html>
-    
+            
